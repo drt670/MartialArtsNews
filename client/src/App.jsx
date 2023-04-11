@@ -5,6 +5,7 @@ import Toolbar from "./HomePage/Components/Toolbar";
 import './HomePage/index.css'
 import { MmaContextProvider } from "../contexts/MmaContext";
 import MmaNews from "./HomePage/Components/MmaNews.jsx";
+import LinearGradient from "react-native-web-linear-gradient";
 
 const API_BASE_URL = "http://localhost:3000";
 const App = () => {
@@ -57,16 +58,18 @@ const App = () => {
             }}
         >
             <div className="home-page" page={page}>
-                <div className='container'>
-                    <span>
-                        <Toolbar setPage={setPage}/>
-                    </span>
-                    <div className='information-page'>
-                        <Title/>
-                        <div className="bar"></div>
-                    </div>
-                    <MmaNews />
-                </div>
+                <LinearGradient style={{ height: 'auto', width: 'auto' }} colors={['#292C33', '#939799', 'white']} >
+                    <div className='container'>
+                            <span>
+                                <Toolbar setPage={setPage}/>
+                            </span>
+                            <div className='information-page'>
+                                <Title/>
+                                <div className="bar"></div>
+                            </div>
+                            <MmaNews />
+                        </div>
+                </LinearGradient>
             </div>
         </MmaContextProvider>
       );

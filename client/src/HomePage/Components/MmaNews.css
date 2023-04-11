@@ -3,7 +3,6 @@
     margin: auto;
     width: 90%;
     flex-flow: row wrap;
-    border: solid 1px red;
     grid-gap: 1rem;
     font-size: 2rem;
     color: white;
@@ -70,6 +69,8 @@
 }
 
 .link {
+    user-select: none;
+    cursor: pointer;
     border: 1px solid #d32f2f;
     border-spacing: 1px;
     font-size: 1rem;
@@ -83,4 +84,31 @@
 
 .link:hover {
     color: white;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.pagination>* {
+    font-family: "Agency FB";
+    font-size: 25px;
+    padding: 0.1rem 1rem;
+    list-style: none;
+    cursor: pointer;
+    border: #d32f2f 1px solid;
+    border-radius: 2px;
+    transition-duration: 50ms;
+    user-select: none;
+}
+
+.pagination>*:hover {
+    background-color: gray;
+}
+
+.active-page {
+    background-color: #d32f2f;
+    box-shadow: 2px 2px 7px 1px rgba(0,0,0,.8);
 }

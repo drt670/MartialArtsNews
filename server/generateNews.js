@@ -1,16 +1,15 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const NodeCache = require("node-cache");
-
 const rssCache = new NodeCache();
 
 async function generateNews() {
     // An array of URLs for websites that provide RSS feeds
     const urls = [
-        "https://www.fightbookmma.com/feed/",
-        "https://www.sherdog.com/rss/news.xml",
-        "https://mmajunkie.usatoday.com/feed/",
+        "mmafighting.com/rss/current",
+        "bloodyelbow.com/rss/current",
         "https://www.lowkickmma.com/feed/",
+        "https://mmajunkie.usatoday.com/feed/",
         "https://www.mmarising.com/feed/",
         "https://www.bjpenn.com/feed/",
         "https://www.mmamania.com/rss/current",
@@ -39,8 +38,7 @@ async function generateNews() {
                 $(item).find("enclosure").attr("url") ||
                 $(item).find("image").attr("url") ||
                 $(item).find("og:image").attr("content") ||
-                $(item).find("twitter:image").attr("content") ||
-                "nopick"; // Default thumbnail
+                $(item).find("twitter:image").attr("content"); // Default thumbnail
 
             const date = $(item).find("pubDate").text();
 
