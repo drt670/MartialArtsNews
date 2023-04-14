@@ -16,7 +16,7 @@ In the client directory, enter:
 ### 1. `npm install`
 ### 2. `npm run dev`
 
-Runs the app in the development mode.\
+Runs the app in the development mode. Utilizing Vite instead of webpack or babel.
 Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 `Enter q in terminal to exit client`
