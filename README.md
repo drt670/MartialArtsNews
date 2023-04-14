@@ -11,10 +11,10 @@ To the start server, navigate to server directory, enter in terminal:
 ### 1. `npm install`
 ### 2. `npm run dev`
 
-In the client directory, enter:
+In the client directory:
 
-### 1. `npm install`
-### 2. `make sure API_URL in App.jsx matches chosen port in server index.js`
+### 1. `make sure API_URL in App.jsx matches chosen port in server index.js`
+### 2. `npm install`
 ### 3. `npm run dev`
 
 Runs the app in the development mode. Utilizing Vite instead of webpack or babel. \
