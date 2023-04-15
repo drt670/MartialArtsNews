@@ -1,11 +1,37 @@
 .test-box {
-    height: 250px;
-    width: 300px;
+    top: 20rem;
+    position: absolute;
+    margin-top: -2rem;
+    margin-left: -3rem;
+    height: 31rem;
+    width: 37.5rem;
     background-color: #d32f2f;
     transition-duration: 200ms;
 }
 
 .test-box:hover {
-    height: 300px;
-    width: 350px;
+    height: 32.5rem;
+    width: 39rem;
+}
+
+.test-box2 {
+    position: absolute;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    height: 31rem;
+    width: 37.5rem;
+    transition-duration: 200ms;
+}
+
+.test-box2:hover {
+    height: 32.5rem;
+    width: 39rem;
+}
+
+.center-box {
+    margin:5rem;
+    object-position: center;
+    height: 40rem;
+    width: 90%;
+    background-color: white;
 }
