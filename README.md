@@ -1,6 +1,6 @@
 # UFC News Website (Personal Project) Full Stack Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and utilizes vite build tools to run.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and utilizes vite build tools for efficient development.
 
 ## To Run
 
