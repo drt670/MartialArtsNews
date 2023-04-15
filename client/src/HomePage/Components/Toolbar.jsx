@@ -12,6 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AppBar from "@mui/material/AppBar";
 import { func } from "prop-types";
+import UFCGloves from '../../Images/UFC-gloves.jpeg';
+import { Link } from 'react-router-dom';
 
 const styles = {
     AppBar : {
@@ -20,10 +22,13 @@ const styles = {
     Container: {
         maxWidth: 'xl',
     },
+    Link : {
+        textDecoration: 'none',
+    }
 }
 
 const ToolBar = ({ setPage = () => {} }) => {
-    const pages = ['Wins', 'Losses', 'Knockout', 'Decision', 'Draws', 'TKO'];
+    const pages = ['Latest News'];
     const settings = ['Profile', 'Logout'];
 
     const [anchorElNav, setAnchorElNav] = useState(null);
@@ -33,6 +38,7 @@ const ToolBar = ({ setPage = () => {} }) => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
+        console.log(event);
         setAnchorElUser(event.currentTarget);
     };
 
@@ -46,10 +52,14 @@ const ToolBar = ({ setPage = () => {} }) => {
         setAnchorElUser(null);
     };
 
+    const getUrl = (page) => {
+        if(page === 'Latest News') return '/news';
+    };
+
     return (
         <AppBar styles={styles.AppBar} color='error'>
         <Container styles={styles.Container}>
-            <Toolbar disableGuttersaaaa>
+            <Toolbar disableGutters>
                 <Typography
                     variant="h6"
                     noWrap
@@ -111,7 +121,7 @@ const ToolBar = ({ setPage = () => {} }) => {
                             onClick={handleCloseNavMenu}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
-                            {page}
+                            {<Link to={getUrl(page)} style={{ textDecoration: 'none', color: 'white' }}>{page}</Link>}
                         </Button>
                     ))}
                 </Box>
@@ -119,7 +129,7 @@ const ToolBar = ({ setPage = () => {} }) => {
                 <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                            <Avatar alt="Remy Sharp" src={UFCGloves} />
                         </IconButton>
                     </Tooltip>
                     <Menu

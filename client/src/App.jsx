@@ -2,10 +2,12 @@ import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import axios from "axios";
 import Title from "./HomePage/Title";
 import Toolbar from "./HomePage/Components/Toolbar";
-import './HomePage/index.css'
+import './HomePage/index.css';
 import { MmaContextProvider } from "../contexts/MmaContext";
-import MmaNews from "./HomePage/Components/MmaNews.jsx";
 import LinearGradient from "react-native-web-linear-gradient";
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import MmaNews from "./HomePage/Components/MmaNews.jsx";
+import MainPage from "./HomePage/Components/MainPage.jsx";
 
 const API_BASE_URL = "http://localhost:3000";
 const App = () => {
@@ -44,6 +46,7 @@ const App = () => {
     }, [fetchMma])
 
       return (
+          <Router>
         <MmaContextProvider
             value={{
                 mmaItems,
@@ -57,21 +60,21 @@ const App = () => {
                 setFilteredMmaItems
             }}
         >
-            <div className="home-page" page={page}>
+            <div className="static-page" page={page}>
                 <LinearGradient style={{ height: 'auto', width: 'auto' }} colors={['#292C33', '#939799', 'white']} >
                     <div className='container'>
-                            <span>
-                                <Toolbar setPage={setPage}/>
-                            </span>
-                            <div className='information-page'>
-                                <Title/>
-                                <div className="bar"></div>
-                            </div>
-                            <MmaNews />
-                        </div>
+                        <span>
+                            <Toolbar setPage={setPage}/>
+                        </span>
+                        <Routes>
+                            <Route exact path='/' element={<MainPage />} />
+                            <Route path='/news' element={<MmaNews />} />
+                        </Routes>
+                    </div>
                 </LinearGradient>
             </div>
         </MmaContextProvider>
+          </Router>
       );
 }
 

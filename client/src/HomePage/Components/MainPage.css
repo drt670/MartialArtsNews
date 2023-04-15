@@ -1,0 +1,11 @@
+.test-box {
+    height: 250px;
+    width: 300px;
+    background-color: #d32f2f;
+    transition-duration: 200ms;
+}
+
+.test-box:hover {
+    height: 300px;
+    width: 350px;
+}
