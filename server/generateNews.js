@@ -6,8 +6,8 @@ const rssCache = new NodeCache();
 async function generateNews() {
     // An array of URLs for websites that provide RSS feeds
     const urls = [
-        "mmafighting.com/rss/current",
-        "bloodyelbow.com/rss/current",
+        "https://mmafighting.com/rss/current",
+        "https://bloodyelbow.com/rss/current",
         "https://www.lowkickmma.com/feed/",
         "https://mmajunkie.usatoday.com/feed/",
         "https://www.mmarising.com/feed/",
@@ -33,6 +33,7 @@ async function generateNews() {
             // Extract the required fields from the RSS item
             const postUrl = $(item).find("link").text();
             const title = $(item).find("title").text();
+            const author = $(item).find("dc\\:creator").text();
             const thumbnail =
                 $(item).find("media\\:content, content").attr("url") ||
                 $(item).find("enclosure").attr("url") ||
@@ -43,7 +44,7 @@ async function generateNews() {
             const date = $(item).find("pubDate").text();
 
             // Add the news item to the array
-            newsItems.push({ postUrl, title, thumbnail, date });
+            newsItems.push({ postUrl, title, thumbnail, date, author });
         });
     });
 

@@ -13,7 +13,7 @@ const API_BASE_URL = "http://localhost:3000";
 const App = () => {
     const [page, setPage] = useState('home-page');
     const [mmaItems, setMmaItems] = useState([]);
-    const [isLoading, setLoading] = useState(null);
+    const [isLoading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredMmaItems, setFilteredMmaItems] = useState([]);
 
@@ -67,7 +67,7 @@ const App = () => {
                             <Toolbar setPage={setPage}/>
                         </span>
                         <Routes>
-                            <Route exact path='/' element={<MainPage />} />
+                            <Route exact path='/' element={<MainPage filteredMmaItems={mmaItems}/>} />
                             <Route path='/news' element={<MmaNews />} />
                         </Routes>
                     </div>

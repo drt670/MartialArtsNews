@@ -1,31 +1,41 @@
-.test-box {
+.center-box .box {
     top: 20rem;
     position: absolute;
     margin-top: -2rem;
     margin-left: -3rem;
-    height: 31rem;
-    width: 37.5rem;
-    background-color: #d32f2f;
+    height: 45%;
+    width: 30%;
+    border-radius: 4px;
     transition-duration: 200ms;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, #d32f2f 60%, #d32f2f 50%, black 1%, black 1%);
+    animation: 30s BeProud linear 1;
+    animation-fill-mode: forwards;
+}
+@keyframes BeProud {
+    100% {
+        background-position: 100vw 0px; } }
+
+.box:hover {
+    height: 46%;
+    width: 31%;
 }
 
-.test-box:hover {
-    height: 32.5rem;
-    width: 39rem;
-}
-
-.test-box2 {
+.box .ufc-box {
     position: absolute;
     margin-left: 2rem;
     margin-top: 2rem;
-    height: 31rem;
-    width: 37.5rem;
+    height: 100%;
+    width: 100%;
     transition-duration: 200ms;
+    box-shadow: 2px 2px 7px 1px rgba(0,0,0,.8);
+    border-radius: 4px;
 }
 
-.test-box2:hover {
-    height: 32.5rem;
-    width: 39rem;
+.box .ufc-box:hover {
+    height: 103%;
+    width: 103%;
 }
 
 .center-box {
@@ -33,5 +43,162 @@
     object-position: center;
     height: 40rem;
     width: 90%;
-    background-color: white;
+    background-color: slategray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-radius: 4px;
+}
+
+.center-box>*{
+    flex: 1;
+}
+
+.slider {
+    background-color: blue;
+}
+
+h3 {
+    background: #5f9ea0;
+    color: #fff;
+    font-size: 36px;
+    line-height: 100px;
+    margin: 10px;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+}
+
+
+.slide {
+    background: cadetblue;
+}
+
+.slide h1 {
+    top: 20px;
+    left: 1rem;
+    position: absolute;
+    font-family: Agency FB;
+    font-weight: 900;
+    margin: 2rem;
+    align-items: center;
+    max-width: 840px;
+    color: #FFFFFF;
+    font-size: 30px;
+    line-height: 1.5;
+}
+
+
+.slider-wrapper {
+    margin-left: 35rem;
+    margin-top: 4rem;
+    position: relative;
+    width: 60%;
+    height: 80%;
+    overflow: hidden;
+    border-radius: 4px;
+    /*border: #9CA38F solid .25rem;*/
+}
+
+.slider-wrapper a.previousButton, .slider-wrapper a.nextButton {
+    font-size: 22px;
+    line-height: 0;
+    display: block;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
+    z-index: 1;
+    color: #d32f2f;
+    padding: 10px;
+    text-decoration: none;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden
+    /* prevent jump effect when scaling */
+}
+
+.slider-wrapper a.previousButton:not(.disabled):hover, .slider-wrapper a.nextButton:not(.disabled):hover {
+    -webkit-transform: translateY(-50%) scale(1.25);
+    transform: translateY(-50%) scale(1.25);
+    cursor: pointer;
+}
+
+.slider-wrapper a.previousButton {
+    left: 20px;
+}
+
+.slider-wrapper a.nextButton {
+    right: 20px;
+}
+
+.slider-wrapper .date {
+    font-family: sans-serif;
+    position: absolute;
+    font-size: x-small;
+    bottom: 5px;
+    margin-left: 1rem;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden
+}
+
+.slide.hidden {
+    visibility: hidden;
+}
+
+.slide.previous {
+    left: -100%;
+}
+
+.slide.current {
+    left: 0;
+}
+
+.slide.next {
+    left: 100%;
+}
+
+.slide img {
+    height: 100%;
+    width: 100%;
+}
+
+.slide .author-date {
+    display: flex;
+    flex-direction: row;
+}
+
+.slide .author {
+    color: white;
+    font-family: sans-serif;
+    font-size: small;
+    position: absolute;
+    bottom: 30px;
+    margin-left: 1rem;
+}
+
+.slide .button {
+    color: white;
+    background-color: #d32f2f;
+    position: absolute;
+    bottom: 30px;
+    right: 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px 1px rgba(0,0,0,1);
+}
+
+.slide .button .link {
+    user-select: none;
+    color: black;
+    transition-duration: 200ms;
+}
+
+.slide .button .link:hover {
+    color: white;
 }
