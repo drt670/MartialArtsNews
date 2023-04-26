@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import './MainPage.css';
 import './slider-animations.css'
 import UFCLogo from '../../Images/UFC-HOMEPAGE_LOGO.webp';
+import Highlights from '../../Images/Highlights (1).png'
 import Slider from 'react-animated-slider';
 import { MmaContext } from "../../../contexts/MmaContext.js";
 import { array } from "prop-types";
@@ -30,27 +31,32 @@ const MainPage = ({ filteredMmaItems = [] }) => {
             {isLoading ? (
                 <Loading />
             ) : (
-            <div style={{ marginTop: '7rem' }}>
-                <div className='center-box'>
-                    <div className='box'>
-                        <img src={UFCLogo} className='ufc-box'/>
-                    </div>
-                    <div className='box2'>
-                        <Slider className='slider-wrapper'>
-                            {slides.map((slide, index) =>
-                                <div key={index} >
-                                    <img src={currentItems?.[index].thumbnail} referrerPolicy="no-referrer"/>
-                                    <h1>{currentItems?.[index].title}</h1>
-                                    <div className='author-date'>
-                                        <p className='author'>Posted by <strong>{currentItems?.[index].author}</strong></p>
-                                        <p className='date'>{moment(currentItems?.[index].date).fromNow()}</p>
+            <div>
+                <div className='highlights'>
+                    <img src={Highlights}/>
+                </div>
+                <div style={{ marginTop: '7rem' }}>
+                    <div className='center-box'>
+                        <div className='box'>
+                            <img src={UFCLogo} className='ufc-box'/>
+                        </div>
+                        <div className='box2'>
+                            <Slider className='slider-wrapper'>
+                                {slides.map((slide, index) =>
+                                    <div key={index} >
+                                        <img src={currentItems?.[index].thumbnail} referrerPolicy="no-referrer"/>
+                                        <h1>{currentItems?.[index].title}</h1>
+                                        <div className='author-date'>
+                                            <p className='author'>Posted by <strong>{currentItems?.[index].author}</strong></p>
+                                            <p className='date'>{moment(currentItems?.[index].date).fromNow()}</p>
+                                        </div>
+                                        <div className='button'>
+                                            <Button><a href={currentItems?.[index].postUrl} className='slider-link'>Read More</a></Button>
+                                        </div>
                                     </div>
-                                    <div className='button'>
-                                        <Button><a href={currentItems?.[index].postUrl} className='link'>Read More</a></Button>
-                                    </div>
-                                </div>
-                            )}
-                        </Slider>
+                                )}
+                            </Slider>
+                        </div>
                     </div>
                 </div>
             </div>

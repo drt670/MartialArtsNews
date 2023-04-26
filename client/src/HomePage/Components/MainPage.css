@@ -9,7 +9,7 @@
     transition-duration: 200ms;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background: linear-gradient(90deg, #d32f2f 60%, #d32f2f 50%, black 1%, black 1%);
+    background: linear-gradient(80deg, #d32f2f 60%, #d32f2f 50%, black 1%, black 1%);
     animation: 30s BeProud linear 1;
     animation-fill-mode: forwards;
 }
@@ -69,6 +69,15 @@ h3 {
     text-align: center;
 }
 
+.previousButton {
+    z-index: 10;
+    background: url('../../Images/align-left-01-svgrepo-com.png') no-repeat center center / 30px;
+}
+
+.nextButton {
+    z-index: 10;
+    background: url('../../Images/align-right-01-svgrepo-com.png') no-repeat center center / 30px
+}
 
 .slide {
     background: cadetblue;
@@ -86,8 +95,19 @@ h3 {
     color: #FFFFFF;
     font-size: 30px;
     line-height: 1.5;
+    text-shadow: 0 0 10px #d32f2f;
+    /*animation: glow 1s ease-in-out infinite alternate*/;
 }
-
+/*
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #030002, 0 0 40px #0c0107, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #de0518, 0 0 40px #de0518, 0 0 50px #de0518, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+}
+*/
 
 .slider-wrapper {
     margin-left: 35rem;
@@ -106,6 +126,8 @@ h3 {
     display: block;
     position: absolute;
     top: 50%;
+    width: 20px;
+    height: 20px;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     -webkit-transition: all .3s linear;
@@ -115,8 +137,12 @@ h3 {
     padding: 10px;
     text-decoration: none;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden
+    backface-visibility: hidden;
     /* prevent jump effect when scaling */
+}
+
+.slider-wrapper a svg {
+    display: none;
 }
 
 .slider-wrapper a.previousButton:not(.disabled):hover, .slider-wrapper a.nextButton:not(.disabled):hover {
@@ -185,7 +211,7 @@ h3 {
 
 .slide .button {
     color: white;
-    background-color: #d32f2f;
+    background-color: gold;
     position: absolute;
     bottom: 30px;
     right: 1rem;
@@ -193,12 +219,29 @@ h3 {
     box-shadow: 2px 2px 7px 1px rgba(0,0,0,1);
 }
 
-.slide .button .link {
+.slide .button .slider-link {
     user-select: none;
     color: black;
+    text-decoration: none;
     transition-duration: 200ms;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.375rem;
+    font-size: .75rem;
 }
 
-.slide .button .link:hover {
+.slide .button .slider-link:hover {
     color: white;
+}
+
+.highlights {
+    margin-bottom: -5rem;
+    margin-top: 3rem;
+}
+
+.highlights img {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    transform: scale(1.0);
 }
