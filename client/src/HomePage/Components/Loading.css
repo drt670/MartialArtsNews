@@ -1,0 +1,42 @@
+.spinner-container {
+    display: flex;
+    margin: auto;
+    padding: 200px 0;
+    align-items: center;
+}
+
+.spinner-animation {
+    animation: spin 1s linear infinite;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 9999px;
+    border-width: 4px;
+    border-color: #d32f2f;
+    border-right-color: transparent;
+    border-style: solid;
+}
+
+.spinner-animation .motion-reduce\:animate-\[spin_1\.5s_linear_infinite\] {
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    position: absolute !important;
+    margin: -1px !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    border-width: 0px !important;
+    clip: rect(0,0,0,0) !important;
+    padding: 0px !important;
+}

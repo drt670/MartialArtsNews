@@ -10,10 +10,10 @@ import Placeholder from '../../Images/UFC-PLACEHOLDER.webp'
 import Loading from './Loading.jsx';
 import moment from "moment";
 import Button from "@mui/material/Button";
+import LinearGradient from "react-native-web-linear-gradient";
 
 const MainPage = ({ filteredMmaItems = [] }) => {
     const { mmaItems, isLoading } = useContext(MmaContext);
-    console.log(isLoading);
 
     const slides = [
         { title: 'First item', description: 'Lorem ipsum'},
@@ -32,33 +32,35 @@ const MainPage = ({ filteredMmaItems = [] }) => {
                 <Loading />
             ) : (
             <div>
-                <div className='highlights'>
-                    <img src={Highlights}/>
-                </div>
-                <div style={{ marginTop: '7rem' }}>
-                    <div className='center-box'>
-                        <div className='box'>
-                            <img src={UFCLogo} className='ufc-box'/>
-                        </div>
-                        <div className='box2'>
-                            <Slider className='slider-wrapper'>
-                                {slides.map((slide, index) =>
-                                    <div key={index} >
-                                        <img src={currentItems?.[index].thumbnail} referrerPolicy="no-referrer"/>
-                                        <h1>{currentItems?.[index].title}</h1>
-                                        <div className='author-date'>
-                                            <p className='author'>Posted by <strong>{currentItems?.[index].author}</strong></p>
-                                            <p className='date'>{moment(currentItems?.[index].date).fromNow()}</p>
+                {/*<div className='highlights'>*/}
+                {/*    <img src={Highlights}/>*/}
+                {/*</div>*/}
+                <LinearGradient style={{ height: 'auto', width: 'auto' }} colors={['#292C33', '#939799', 'white']} >
+                    <div style={{ marginTop: '7rem' }}>
+                        <div className='center-box'>
+                            <div className='box'>
+                                <img src={UFCLogo} className='ufc-box'/>
+                            </div>
+                            <div className='box2'>
+                                <Slider className='slider-wrapper'>
+                                    {slides.map((slide, index) =>
+                                        <div key={index} >
+                                            <img src={currentItems?.[index].thumbnail} referrerPolicy="no-referrer"/>
+                                            <h1>{currentItems?.[index].title}</h1>
+                                            <div className='author-date'>
+                                                <p className='author'>Posted by <strong>{currentItems?.[index].author}</strong></p>
+                                                <p className='date'>{moment(currentItems?.[index].date).fromNow()}</p>
+                                            </div>
+                                            <div className='button'>
+                                                <Button><a href={currentItems?.[index].postUrl} className='slider-link'>Read More</a></Button>
+                                            </div>
                                         </div>
-                                        <div className='button'>
-                                            <Button><a href={currentItems?.[index].postUrl} className='slider-link'>Read More</a></Button>
-                                        </div>
-                                    </div>
-                                )}
-                            </Slider>
+                                    )}
+                                </Slider>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </LinearGradient>
             </div>
             )}
         </>

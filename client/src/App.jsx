@@ -13,6 +13,7 @@ const API_BASE_URL = "http://localhost:3000";
 const App = () => {
     const [page, setPage] = useState('home-page');
     const [mmaItems, setMmaItems] = useState([]);
+    const [boxingItems, setBoxingItems] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredMmaItems, setFilteredMmaItems] = useState([]);
@@ -21,6 +22,16 @@ const App = () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/api/mma`);
             setMmaItems(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [])
+
+    const fetchBoxing = useCallback(async () => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}/api/boxing`);
+            setBoxingItems(response.data);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -45,6 +56,10 @@ const App = () => {
         fetchMma();
     }, [fetchMma])
 
+    useEffect(() => {
+        fetchBoxing();
+    }, [fetchBoxing])
+
       return (
           <Router>
         <MmaContextProvider
@@ -61,17 +76,13 @@ const App = () => {
             }}
         >
             <div className="static-page" page={page}>
-                <LinearGradient style={{ height: 'auto', width: 'auto' }} colors={['#292C33', '#939799', 'white']} >
                     <div className='container'>
-                        <span>
-                            <Toolbar setPage={setPage}/>
-                        </span>
+                        <Toolbar setPage={setPage}/>
                         <Routes>
                             <Route exact path='/' element={<MainPage filteredMmaItems={mmaItems}/>} />
-                            <Route path='/news' element={<MmaNews />} />
+                            <Route path='/ufcnews' element={<MmaNews />} />
                         </Routes>
                     </div>
-                </LinearGradient>
             </div>
         </MmaContextProvider>
           </Router>
