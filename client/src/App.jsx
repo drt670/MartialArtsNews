@@ -3,11 +3,13 @@ import axios from "axios";
 import Title from "./HomePage/Title";
 import Toolbar from "./HomePage/Components/Toolbar";
 import './HomePage/index.css';
-import { MmaContextProvider } from "../contexts/MmaContext";
+import { NewsContextProvider } from "../contexts/NewsContext.js";
 import LinearGradient from "react-native-web-linear-gradient";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MmaNews from "./HomePage/Components/MmaNews.jsx";
 import MainPage from "./HomePage/Components/MainPage.jsx";
+import UFCLogo from "./Images/UFC-Logo.png";
+import BoxingLogo from "./Images/boing-logo.jpg";
 
 const API_BASE_URL = "http://localhost:3000";
 const App = () => {
@@ -18,20 +20,12 @@ const App = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredMmaItems, setFilteredMmaItems] = useState([]);
 
-    const fetchMma = useCallback(async () => {
+    const fetchNews = useCallback(async () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/api/mma`);
             setMmaItems(response.data);
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-    }, [])
-
-    const fetchBoxing = useCallback(async () => {
-        try {
-            const response = await axios.get(`${API_BASE_URL}/api/boxing`);
-            setBoxingItems(response.data);
+            const responseBoxing = await axios.get(`${API_BASE_URL}/api/boxing`);
+            setBoxingItems(responseBoxing.data);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -53,22 +47,20 @@ const App = () => {
     }, [filteredMma, mmaItems, searchQuery]);
 
     useEffect(() => {
-        fetchMma();
-    }, [fetchMma])
-
-    useEffect(() => {
-        fetchBoxing();
-    }, [fetchBoxing])
+        fetchNews();
+    }, [fetchNews])
 
       return (
           <Router>
-        <MmaContextProvider
+        <NewsContextProvider
             value={{
+                boxingItems,
+                setBoxingItems,
                 mmaItems,
                 setMmaItems,
                 isLoading,
                 setLoading,
-                fetchMma,
+                fetchNews,
                 setSearchQuery,
                 searchQuery,
                 filteredMmaItems,
@@ -77,14 +69,15 @@ const App = () => {
         >
             <div className="static-page" page={page}>
                     <div className='container'>
-                        <Toolbar setPage={setPage}/>
+                        <Toolbar />
                         <Routes>
                             <Route exact path='/' element={<MainPage filteredMmaItems={mmaItems}/>} />
-                            <Route path='/ufcnews' element={<MmaNews />} />
+                            <Route path='/ufcnews' element={<MmaNews currentItems={mmaItems} logo={UFCLogo}/>} />
+                            <Route path='/boxing' element={<MmaNews currentItems={boxingItems} logo={BoxingLogo}/>} />
                         </Routes>
                     </div>
             </div>
-        </MmaContextProvider>
+        </NewsContextProvider>
           </Router>
       );
 }

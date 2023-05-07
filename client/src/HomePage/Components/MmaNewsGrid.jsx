@@ -1,34 +1,35 @@
 import React, { useContext, useState } from 'react';
-import { MmaContext } from "../../../contexts/MmaContext.js";
+import { NewsContext } from "../../../contexts/NewsContext.js";
 import moment from "moment";
 import './MmaNewsGrid.css';
 import UFCLogo from '../../Images/UFC-Logo.png';
 import ReactPaginate from "react-paginate";
 import Loading from "./Loading.jsx";
-const MmaNewsGrid = () => {
-    const { mmaItems, filteredMmaItems, isLoading } = useContext(MmaContext);
+import {array, string} from "prop-types";
+const MmaNewsGrid = ({ currentItems = [], logo = {} }) => {
+    const { isLoading } = useContext(NewsContext);
     const [startIndex, setStartIndex] = useState(0);
 
     const itemsPerPage = 6;
-    const pageCount = Math.ceil(mmaItems.length / itemsPerPage);
+    const pageCount = Math.ceil(currentItems.length / itemsPerPage);
     const endIndex = startIndex + itemsPerPage;
 
-    const mmaNews = filteredMmaItems.length ? filteredMmaItems : mmaItems;
-
     const handlePageChange = (e) => {
-        const newStartIndex = (e.selected * itemsPerPage) % mmaItems.length;
+        const newStartIndex = (e.selected * itemsPerPage) % currentItems.length;
         setStartIndex(newStartIndex);
     }
 
-    const currentItems = mmaNews.slice(startIndex, endIndex);
+    const currentItemsDisplayed = currentItems.slice(startIndex, endIndex);
 
     return (
         <div>
             {isLoading ? (
-                <Loading />
+                <div className="loader-container">
+                    <Loading />
+                </div>
             ) : (
             <div className = "news-grid">
-                {currentItems.map((item) => (
+                {currentItemsDisplayed.map((item) => (
                     <div>
                         <div
                             key={item.postUrl}
@@ -40,7 +41,7 @@ const MmaNewsGrid = () => {
                                 rel="noopener noreferrer"
                             >
                                 <img
-                                    src={item.thumbnail ? item.thumbnail : UFCLogo}
+                                    src={item.thumbnail ? item.thumbnail : logo}
                                     className="img"
                                     referrerPolicy="no-referrer"
                                 />
@@ -81,5 +82,10 @@ const MmaNewsGrid = () => {
         </div>
     )
 };
+
+MmaNewsGrid.propTypes = {
+    currentItems: array,
+    logo: string,
+}
 
 export default MmaNewsGrid;

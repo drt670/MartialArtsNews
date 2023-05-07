@@ -2,18 +2,17 @@ import React, {useContext} from 'react';
 import './MainPage.css';
 import './slider-animations.css'
 import UFCLogo from '../../Images/UFC-HOMEPAGE_LOGO.webp';
-import Highlights from '../../Images/Highlights (1).png'
 import Slider from 'react-animated-slider';
-import { MmaContext } from "../../../contexts/MmaContext.js";
+import { NewsContext } from "../../../contexts/NewsContext.js";
 import { array } from "prop-types";
-import Placeholder from '../../Images/UFC-PLACEHOLDER.webp'
 import Loading from './Loading.jsx';
 import moment from "moment";
 import Button from "@mui/material/Button";
 import LinearGradient from "react-native-web-linear-gradient";
+import BoxingComponent from "./BoxingComponent.jsx";
 
 const MainPage = ({ filteredMmaItems = [] }) => {
-    const { mmaItems, isLoading } = useContext(MmaContext);
+    const { mmaItems, boxingItems, isLoading, } = useContext(NewsContext);
 
     const slides = [
         { title: 'First item', description: 'Lorem ipsum'},
@@ -22,9 +21,11 @@ const MainPage = ({ filteredMmaItems = [] }) => {
         { title: 'Fourth item', description: 'Lorem ipsum'}
     ];
 
-    const hasThumbnail = mmaItems.filter((item) => item.thumbnail);
-    const currentItems = hasThumbnail.slice(0, 4);
-    console.log(currentItems);
+    const mmaHasThumbnail = mmaItems.filter((item) => item.thumbnail);
+    const currentItems = mmaHasThumbnail.slice(0, 4);
+
+    const boxingHasThumbnail = boxingItems.filter((item) => item.thumbnail);
+    const currentBoxingItems = boxingHasThumbnail.slice(0,2);
 
     return (
         <>
@@ -32,9 +33,6 @@ const MainPage = ({ filteredMmaItems = [] }) => {
                 <Loading />
             ) : (
             <div>
-                {/*<div className='highlights'>*/}
-                {/*    <img src={Highlights}/>*/}
-                {/*</div>*/}
                 <LinearGradient style={{ height: 'auto', width: 'auto' }} colors={['#292C33', '#939799', 'white']} >
                     <div style={{ marginTop: '7rem' }}>
                         <div className='center-box'>
@@ -61,6 +59,7 @@ const MainPage = ({ filteredMmaItems = [] }) => {
                         </div>
                     </div>
                 </LinearGradient>
+                <BoxingComponent currentBoxingItems={currentBoxingItems} />
             </div>
             )}
         </>

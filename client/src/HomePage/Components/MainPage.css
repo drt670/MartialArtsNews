@@ -246,3 +246,110 @@ h3 {
     margin: 0 auto;
     transform: scale(1.0);
 }
+
+.boxing-container {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 1024px) {
+    .boxing-label {
+        font-size: 32px;
+        letter-spacing: 14px;
+        margin-bottom: 2%;
+    }
+}
+
+.boxing-label {
+    text-transform: uppercase;
+    text-align: center;
+    font-family: Effra,Helvetica,Arial,sans-serif;
+    font-weight: 500;
+}
+
+.tracks {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 1024px) {
+    .track {
+        flex-direction: row;
+        text-align: left;
+        margin: 1% 10%;
+    }
+}
+
+.track {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (min-width: 1024px) {
+    .boxing-image {
+        width: 65%;
+    }
+}
+
+.boxing-image {
+    display: flex;
+}
+
+.boxing-thumbnail {
+    display: block;
+    position: relative;
+}
+
+.boxing-image a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.boxing-image a img {
+    width: 100%;
+}
+
+.boxing-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2% 0;
+}
+
+@media screen and (min-width: 1024px) {
+    .boxing-text {
+        flex-direction: column;
+        width: 35%;
+        justify-content: center;
+        padding: 2%;
+    }
+}
+
+.boxing-text a {
+    text-decoration: none;
+    color: black;
+}
+
+.boxing-text a h3 {
+    font-family: Druk,Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 45px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    line-height: 100%;
+    background: none;
+}
+
+.boxing-text a h3:hover {
+    color: #0060fc;
+}
+
+@media screen and (min-width: 1024px) {
+    .boxing-text a h3 {
+        font-size: 30px;
+        max-width: none;
+        padding-right: 0;
+    }
+}
