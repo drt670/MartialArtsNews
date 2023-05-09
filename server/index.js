@@ -1,5 +1,5 @@
 const express = require("express");
-const { generateMmaNews, generateBoxingNews } = require("./generateNews")
+const { generateMmaNews, generateBoxingNews, generateMuayThaiNews, generateBJJNews } = require("./generateNews")
 // const generateBoxingNews = re
 const cors = require("cors");
 
@@ -35,6 +35,26 @@ app.get("/api/boxing", async(req, res) => {
         console.error(`Error fetching news: ${error}`);
         res.status(500).json({ error: "Failed to fetch news"});
     }
+});
+
+app.get("/api/muaythai", async(req, res) => {
+    try {
+        const news = await generateMuayThaiNews();
+        res.status(200).json(news);
+    } catch (error) {
+        console.error(`Error fetching news: ${error}`);
+        res.status(500).json({ error: "Failed to fetch news"});
+    }
+});
+
+app.get("/api/BJJ", async(req, res) => {
+   try {
+       const news = await generateBJJNews();
+       res.status(200).json(news);
+   } catch (error) {
+       console.error(`Error fetching news: ${error}`);
+       res.status(500).json({ error: "Faildd to fetch news"});
+   }
 });
 
 app.listen(port, () => {

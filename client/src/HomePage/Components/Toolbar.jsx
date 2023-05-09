@@ -27,13 +27,13 @@ const ToolBar = () => {
                         <a href="/ufcnews">UFC</a>
                     </li>
                     <li className="list-item">
-                        <a href="/ufcnews">MUAY THAI</a>
+                        <a href="/muaythai">MUAY THAI</a>
                     </li>
                     <li className="list-item">
                         <a href="/boxing">BOXING</a>
                     </li>
                     <li className="list-item">
-                        <a href="/ufcnews">BJJ</a>
+                        <a href="/BJJ">BJJ</a>
                     </li>
                     <li className="list-item">
                         <a href="/ufcnews">WRESTLING</a>

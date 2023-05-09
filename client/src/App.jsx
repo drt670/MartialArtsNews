@@ -10,12 +10,15 @@ import MmaNews from "./HomePage/Components/MmaNews.jsx";
 import MainPage from "./HomePage/Components/MainPage.jsx";
 import UFCLogo from "./Images/UFC-Logo.png";
 import BoxingLogo from "./Images/boing-logo.jpg";
+import MuayThaiLogo from "./Images/muay-thai-logo.jpg";
 
 const API_BASE_URL = "http://localhost:3000";
 const App = () => {
     const [page, setPage] = useState('home-page');
     const [mmaItems, setMmaItems] = useState([]);
     const [boxingItems, setBoxingItems] = useState([]);
+    const [muayThaiItems, setMuayThaiItems] = useState([]);
+    const [BJJItems, setBJJItems] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredMmaItems, setFilteredMmaItems] = useState([]);
@@ -26,6 +29,10 @@ const App = () => {
             setMmaItems(response.data);
             const responseBoxing = await axios.get(`${API_BASE_URL}/api/boxing`);
             setBoxingItems(responseBoxing.data);
+            const responseMuayThai = await axios.get(`${API_BASE_URL}/api/muaythai`);
+            setMuayThaiItems(responseMuayThai.data);
+            const responseBJJ = await axios.get(`${API_BASE_URL}/api/BJJ`);
+            setBJJItems(responseBJJ.data);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -56,6 +63,10 @@ const App = () => {
             value={{
                 boxingItems,
                 setBoxingItems,
+                muayThaiItems,
+                setMuayThaiItems,
+                BJJItems,
+                setBJJItems,
                 mmaItems,
                 setMmaItems,
                 isLoading,
@@ -74,6 +85,8 @@ const App = () => {
                             <Route exact path='/' element={<MainPage filteredMmaItems={mmaItems}/>} />
                             <Route path='/ufcnews' element={<MmaNews currentItems={mmaItems} logo={UFCLogo}/>} />
                             <Route path='/boxing' element={<MmaNews currentItems={boxingItems} logo={BoxingLogo}/>} />
+                            <Route path='/muaythai' element={<MmaNews currentItems={muayThaiItems} logo={MuayThaiLogo}/>} />
+                            <Route path='/BJJ' element={<MmaNews currentItems={BJJItems} logo={MuayThaiLogo}/>} />
                         </Routes>
                     </div>
             </div>
