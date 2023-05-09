@@ -38,3 +38,7 @@ You may also see any lint errors in the console.
 - Moment.js
 - MUI
 - React-Router-DOM
+
+<img width="1245" alt="WebsiteScreenshot" src="https://github.com/drt670/UFCNews/assets/47838048/42329787-faee-4a9f-b5b6-cb83125bcea2">
+<img width="1247" alt="HomePage" src="https://github.com/drt670/UFCNews/assets/47838048/e858643a-9065-4eba-bb66-3090030e9ea8">
+<img width="1231" alt="Boxing Section" src="https://github.com/drt670/UFCNews/assets/47838048/d9bf5acc-04a0-4b74-b0c6-77cb186d9a21">
