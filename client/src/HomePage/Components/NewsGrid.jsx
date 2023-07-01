@@ -1,25 +1,26 @@
 import React, { useContext, useState } from 'react';
 import { NewsContext } from "../../../contexts/NewsContext.js";
 import moment from "moment";
-import './MmaNewsGrid.css';
+import './NewsGrid.css';
 import UFCLogo from '../../Images/UFC-Logo.png';
 import ReactPaginate from "react-paginate";
 import Loading from "./Loading.jsx";
 import {array, string} from "prop-types";
-const MmaNewsGrid = ({ currentItems = [], logo = {} }) => {
+const NewsGrid = ({ currentItems = [], logo = "", searchValue = "" }) => {
     const { isLoading } = useContext(NewsContext);
     const [startIndex, setStartIndex] = useState(0);
+    const itemsToShow = currentItems.filter((item) => item.title.toLowerCase().includes(searchValue));
 
     const itemsPerPage = 6;
-    const pageCount = Math.ceil(currentItems.length / itemsPerPage);
+    const pageCount = Math.ceil(itemsToShow.length / itemsPerPage);
     const endIndex = startIndex + itemsPerPage;
 
     const handlePageChange = (e) => {
-        const newStartIndex = (e.selected * itemsPerPage) % currentItems.length;
+        const newStartIndex = (e.selected * itemsPerPage) % itemsToShow.length;
         setStartIndex(newStartIndex);
     }
 
-    const currentItemsDisplayed = currentItems.slice(startIndex, endIndex);
+    const currentItemsDisplayed = itemsToShow.slice(startIndex, endIndex);
 
     return (
         <div>
@@ -83,9 +84,10 @@ const MmaNewsGrid = ({ currentItems = [], logo = {} }) => {
     )
 };
 
-MmaNewsGrid.propTypes = {
+NewsGrid.propTypes = {
     currentItems: array,
     logo: string,
+    searchValue: string,
 }
 
-export default MmaNewsGrid;
+export default NewsGrid;

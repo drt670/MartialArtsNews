@@ -1,12 +1,10 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import axios from "axios";
-import Title from "./HomePage/Title";
 import Toolbar from "./HomePage/Components/Toolbar";
 import './HomePage/index.css';
 import { NewsContextProvider } from "../contexts/NewsContext.js";
-import LinearGradient from "react-native-web-linear-gradient";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import MmaNews from "./HomePage/Components/MmaNews.jsx";
+import News from "./HomePage/Components/News.jsx";
 import MainPage from "./HomePage/Components/MainPage.jsx";
 import UFCLogo from "./Images/UFC-Logo.png";
 import BoxingLogo from "./Images/boing-logo.jpg";
@@ -59,38 +57,38 @@ const App = () => {
 
       return (
           <Router>
-        <NewsContextProvider
-            value={{
-                boxingItems,
-                setBoxingItems,
-                muayThaiItems,
-                setMuayThaiItems,
-                BJJItems,
-                setBJJItems,
-                mmaItems,
-                setMmaItems,
-                isLoading,
-                setLoading,
-                fetchNews,
-                setSearchQuery,
-                searchQuery,
-                filteredMmaItems,
-                setFilteredMmaItems
-            }}
-        >
-            <div className="static-page" page={page}>
-                    <div className='container'>
-                        <Toolbar />
-                        <Routes>
-                            <Route exact path='/' element={<MainPage filteredMmaItems={mmaItems}/>} />
-                            <Route path='/ufcnews' element={<MmaNews currentItems={mmaItems} logo={UFCLogo}/>} />
-                            <Route path='/boxing' element={<MmaNews currentItems={boxingItems} logo={BoxingLogo}/>} />
-                            <Route path='/muaythai' element={<MmaNews currentItems={muayThaiItems} logo={MuayThaiLogo}/>} />
-                            <Route path='/BJJ' element={<MmaNews currentItems={BJJItems} logo={MuayThaiLogo}/>} />
-                        </Routes>
-                    </div>
-            </div>
-        </NewsContextProvider>
+            <NewsContextProvider
+                value={{
+                    boxingItems,
+                    setBoxingItems,
+                    muayThaiItems,
+                    setMuayThaiItems,
+                    BJJItems,
+                    setBJJItems,
+                    mmaItems,
+                    setMmaItems,
+                    isLoading,
+                    setLoading,
+                    fetchNews,
+                    setSearchQuery,
+                    searchQuery,
+                    filteredMmaItems,
+                    setFilteredMmaItems
+                }}
+            >
+                <div className="static-page" page={page}>
+                        <div className='container'>
+                            <Toolbar />
+                            <Routes>
+                                <Route exact path='/' element={<MainPage filteredMmaItems={mmaItems}/>} />
+                                <Route path='/ufcnews' element={<News currentItems={mmaItems} logo={UFCLogo}/>} />
+                                <Route path='/boxing' element={<News currentItems={boxingItems} logo={BoxingLogo}/>} />
+                                <Route path='/muaythai' element={<News currentItems={muayThaiItems} logo={MuayThaiLogo}/>} />
+                                <Route path='/BJJ' element={<News currentItems={BJJItems} logo={MuayThaiLogo}/>} />
+                            </Routes>
+                        </div>
+                </div>
+            </NewsContextProvider>
           </Router>
       );
 }
