@@ -6,7 +6,7 @@ This project was bootstrapped with React and utilizes vite build tools for serve
 
 ### 1. `Clone Repo into chosen directory`
 
-To the start server, navigate to server directory, enter in terminal: 
+To start the server, navigate to server directory, enter in terminal: 
 
 ### 1. `npm install`
 ### 2. `npm run dev`
@@ -23,7 +23,7 @@ Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 `Enter q in terminal to exit client`
 
 The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You may also see lint errors in the console.
 
 ## Frameworks/libraries used
 
